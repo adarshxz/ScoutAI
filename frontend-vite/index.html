@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScoutAI | AI-Powered Career Intelligence</title>
+    <meta name="description" content="Analyze internship matches, optimize your resume, and get AI-powered career guidance. Built for students who build." />
+    <meta name="keywords" content="internship, resume analyzer, ATS score, career coach, AI matching, skill gap" />
+    <meta name="author" content="ScoutAI" />
+    <meta property="og:title" content="ScoutAI" />
+    <meta property="og:description" content="AI-powered internship matching for students who build." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Critical inline CSS — paints the initial frame immediately -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #121212;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      #root { min-height: 100vh; }
+      /* Prevent CLS from font swap */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-display: swap;
+        src: local('Inter');
+      }
+    </style>
+
+    <!-- Preconnect to Google Fonts (keep) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Non-render-blocking font loading via preload + onload swap -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <!-- Fallback for browsers with JS disabled -->
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
