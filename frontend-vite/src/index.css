@@ -781,3 +781,121 @@ select.input-glass option {
   color: #000000;
   font-weight: 700;
 }
+
+/* ============================================
+   RESPONSIVE LAYOUT CLASSES & COMPONENT UPDATES
+   ============================================ */
+
+/* Responsive main panels */
+.dashboard-main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-main {
+    padding: 32px;
+  }
+}
+
+.dashboard-header {
+  height: 64px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .dashboard-header {
+    padding: 0 32px;
+  }
+}
+
+/* Sidebar Drawer container */
+.sidebar-container {
+  position: relative;
+  height: 100vh;
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+@media (max-width: 767px) {
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: -256px;
+    width: 256px !important;
+  }
+  .sidebar-container.open {
+    left: 0;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Responsive Grid classes */
+.responsive-mockup-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .responsive-mockup-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1.5fr;
+  }
+}
+
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .responsive-grid-3 {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+}
+
+.responsive-grid-2-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 1024px) {
+  .responsive-grid-2-1 {
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+  }
+}
+
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .responsive-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.responsive-grid-1-1\.6 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .responsive-grid-1-1\.6 {
+    grid-template-columns: 1fr 1.6fr;
+  }
+}
+

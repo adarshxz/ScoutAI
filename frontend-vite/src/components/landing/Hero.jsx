@@ -237,7 +237,7 @@ export default function Hero() {
               </div>
 
               {/* Mock Dashboard Layout */}
-              <div style={{ padding: 24, display: "grid", gridTemplateColumns: "1.2fr 2fr 1.5fr", gap: 20, background: "#ffffff" }} className="flex-col md:grid">
+              <div style={{ padding: 24, background: "#ffffff" }} className="responsive-mockup-grid">
 
                 {/* Panel 1: Profile Summary */}
                 <div className="glass-card" style={{ padding: 20, background: "rgba(250,250,252,0.6)", display: "flex", flexDirection: "column", gap: 16 }}>

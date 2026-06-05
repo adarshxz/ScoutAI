@@ -219,7 +219,7 @@ export default function GithubAnalyzer() {
             style={{ display: "flex", flexDirection: "column", gap: 32 }}
           >
             {/* Top Stats Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 24 }}>
+            <div style={{ gap: 24 }} className="responsive-grid-3">
               {/* Profile Card */}
               <div className="glass-card" style={{ padding: 24, display: "flex", alignItems: "center", gap: 20 }}>
                 <div style={{ position: "relative", width: 80, height: 80, flexShrink: 0 }}>
@@ -277,7 +277,7 @@ export default function GithubAnalyzer() {
             </div>
 
             {/* Split Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 32 }}>
+            <div style={{ gap: 32 }} className="responsive-grid-1-1.6">
               {/* Left Column: Languages */}
               <div className="glass-card" style={{ padding: 32 }}>
                 <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}>
@@ -312,7 +312,7 @@ export default function GithubAnalyzer() {
                     {result.analysis.tech_stack_summary}
                   </p>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+                  <div style={{ gap: 24 }} className="responsive-grid-2">
                     <div>
                       <h4 style={{ fontSize: "0.8125rem", fontWeight: 700, color: "#4ade80", marginBottom: 12 }}>Strengths</h4>
                       <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 10 }}>

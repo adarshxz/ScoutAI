@@ -37,11 +37,11 @@ export default function Profile() {
 
       {message.text && <div className={message.type === "success" ? "alert-success" : "alert-error"}>{message.text}</div>}
 
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 32 }}>
+      <div style={{ gap: 32 }} className="responsive-grid-2-1">
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div className="glass-card" style={{ padding: 32 }}>
             <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><User size={20} style={{ color: "#2e2e2e" }} /> Basic Information</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            <div style={{ gap: 24 }} className="responsive-grid-2">
               <div><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>Full Name</label><input type="text" value={profile.name} onChange={(e) => setProfile({...profile, name: e.target.value})} className="input-glass" placeholder="Enter your name" /></div>
               <div><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>Email Address</label><input type="email" value={profile.email || ""} disabled className="input-glass" style={{ opacity: 0.6, cursor: "not-allowed" }} /></div>
               <div style={{ gridColumn: "span 2" }}><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>Bio</label><textarea value={profile.bio} onChange={(e) => setProfile({...profile, bio: e.target.value})} className="input-glass" style={{ minHeight: 100 }} placeholder="Tell us about yourself..." /></div>
@@ -49,7 +49,7 @@ export default function Profile() {
           </div>
           <div className="glass-card" style={{ padding: 32 }}>
             <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><GraduationCap size={20} style={{ color: "#2e2e2e" }} /> Education</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+            <div style={{ gap: 24 }} className="responsive-grid-2">
               <div><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>College / University</label><input type="text" value={profile.college} onChange={(e) => setProfile({...profile, college: e.target.value})} className="input-glass" placeholder="University Name" /></div>
               <div><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>Branch / Major</label><input type="text" value={profile.branch} onChange={(e) => setProfile({...profile, branch: e.target.value})} className="input-glass" placeholder="e.g. Computer Science" /></div>
               <div><label style={{ display: "block", fontSize: "0.875rem", fontWeight: 500, color: "#5a5a6b", marginBottom: 8 }}>Graduation Year</label><input type="number" value={profile.graduation_year || ""} onChange={(e) => setProfile({...profile, graduation_year: parseInt(e.target.value) || null})} className="input-glass" placeholder="2025" /></div>
@@ -67,7 +67,7 @@ export default function Profile() {
             <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><Code size={20} style={{ color: "#2e2e2e" }} /> Technical Skills</h3>
             <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
               <input type="text" value={newSkill} onChange={(e) => setNewSkill(e.target.value)} onKeyDown={(e) => e.key === "Enter" && addSkill()} className="input-glass" placeholder="Add skill..." />
-              <button onClick={addSkill} style={{ padding: 12, background: "#000000", borderRadius: 12, border: "none", cursor: "pointer", color: "#000000" }}><Plus size={20} /></button>
+              <button onClick={addSkill} style={{ padding: 12, background: "#000000", borderRadius: 12, border: "none", cursor: "pointer", color: "#ffffff" }}><Plus size={20} /></button>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {profile.skills.map((skill) => (

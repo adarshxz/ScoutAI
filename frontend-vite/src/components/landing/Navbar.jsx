@@ -71,8 +71,8 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden"
-          style={{ width: 40, height: 40, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "none", cursor: "pointer" }}
+          className="md:hidden flex"
+          style={{ width: 40, height: 40, flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "none", cursor: "pointer" }}
           aria-label="Toggle mobile menu"
         >
           <motion.span animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} style={{ width: 20, height: 2, background: "rgba(0, 0, 0,0.7)", display: "block" }} />

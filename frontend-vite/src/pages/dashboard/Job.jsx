@@ -43,11 +43,11 @@ export default function Job() {
             <p style={{ color: "#5a5a6b", maxWidth: 480, fontSize: "0.875rem", lineHeight: 1.625 }}>{result.summary || "Our AI engine has analyzed your profile against this role."}</p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 32 }}>
+          <div style={{ gap: 32 }} className="responsive-grid-2-1">
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div className="glass-card" style={{ padding: 32 }}>
                 <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><Brain size={20} style={{ color: "#2e2e2e" }} /> Scoring Breakdown</h3>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+                <div style={{ gap: 32 }} className="responsive-grid-2">
                   {[{ label: "Skills Alignment", pct: result.skills_score, color: "#000000" }, { label: "Project Relevance", pct: result.projects_score, color: "#444444" }, { label: "GitHub Context", pct: result.github_score, color: "#333333" }, { label: "Resume Quality", pct: result.resume_score, color: "#777777" }].map((s) => (
                     <div key={s.label}><div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", marginBottom: 8 }}><span style={{ color: "#5a5a6b", fontWeight: 500 }}>{s.label}</span><span style={{ color: "#000000", fontWeight: 700 }}>{s.pct}%</span></div><div style={{ height: 6, background: "rgba(0, 0, 0,0.04)", borderRadius: 9999, overflow: "hidden" }}><motion.div initial={{ width: 0 }} animate={{ width: `${s.pct}%` }} style={{ height: "100%", borderRadius: 9999, background: s.color }} /></div></div>
                   ))}

@@ -70,7 +70,7 @@ export default function Contact() {
             Have a question, feedback, or partnership idea? We'd love to hear from you.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+          <div style={{ gap: 32 }} className="responsive-grid-2">
             {/* Contact Form */}
             <div className="glass-card" style={{ padding: 32 }}>
               <h2 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24 }}>Send a Message</h2>

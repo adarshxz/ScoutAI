@@ -132,7 +132,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 32 }}>
+      <div style={{ gap: 32 }} className="responsive-grid-2-1">
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div className="glass-card" style={{ padding: 24 }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
@@ -184,7 +184,7 @@ export default function Dashboard() {
 
           <div className="glass-card" style={{ padding: 24 }}>
             <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 24 }}>Recommended for You</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div style={{ gap: 16 }} className="responsive-grid-2">
               <div style={{ padding: 16, borderRadius: 12, border: "1px solid rgba(0, 0, 0,0.04)", background: "rgba(0, 0, 0,0.02)" }}>
                 <div style={{ width: 32, height: 32, borderRadius: 8, background: "rgba(0, 0, 0,0.04)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
                   <Zap size={16} style={{ color: "#555555" }} />

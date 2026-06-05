@@ -83,7 +83,7 @@ export default function Resume() {
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+          <div style={{ gap: 32 }} className="responsive-grid-2">
             <div className="glass-card" style={{ padding: 32 }}>
               <h3 style={{ fontSize: "1.125rem", fontWeight: 700, marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}><Zap size={20} style={{ color: "#facc15" }} /> Key Strengths</h3>
               <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 12 }}>{result.strengths?.map((s, i) => <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, fontSize: "0.875rem", color: "#373747" }}><CheckCircle2 size={16} style={{ color: "#22c55e", flexShrink: 0, marginTop: 2 }} />{s}</li>)}</ul>
@@ -126,7 +126,7 @@ export default function Resume() {
 
               <div style={{ height: 1, background: "rgba(0, 0, 0,0.04)" }} />
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+              <div style={{ gap: 32 }} className="responsive-grid-2">
                 <div>
                   <h4 style={{ fontSize: "0.875rem", fontWeight: 700, color: "#4ade80", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}><CheckCircle2 size={16} /> Pros Analysis</h4>
                   <p style={{ fontSize: "0.875rem", color: "#373747", lineHeight: 1.6 }}>{result.detailed_analysis.pros_analysis}</p>
