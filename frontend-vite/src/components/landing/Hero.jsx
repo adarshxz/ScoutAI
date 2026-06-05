@@ -60,38 +60,19 @@ export default function Hero() {
 
       <div style={{ position: "relative", zIndex: 10, maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", flexDirection: "column", alignItems: "center" }}>
 
-        {/* Dynamic Badge */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "6px 8px 6px 14px",
-            borderRadius: 9999,
-            border: "1px solid rgba(0, 0, 0, 0.08)",
-            background: "rgba(255, 255, 255, 0.75)",
-            backdropFilter: "blur(12px)",
-            boxShadow: "0 4px 15px rgba(0, 0, 0, 0.02)",
-            marginBottom: 32
-          }}
-        >
-          <span style={{ fontSize: "0.75rem", background: "#000000", color: "#ffffff", padding: "2px 8px", borderRadius: 9999, fontWeight: 600, tracking: "0.05em" }}>v2.0</span>
-          <span style={{ fontSize: "0.8125rem", color: "#555555", fontWeight: 500, display: "flex", alignItems: "center", gap: 4 }}>
-            AI-Powered Career Intelligence <span style={{ color: "#aaaaaa" }}>→</span>
-          </span>
-        </div>
+
 
         {/* Large Sleek Title */}
         <h1
           style={{
-            fontSize: "clamp(2.75rem, 7.5vw, 5.5rem)",
+            fontSize: "clamp(2.3rem, 6.5vw, 4.8rem)",
             fontWeight: 800,
             letterSpacing: "-0.04em",
             lineHeight: 1.05,
-            marginBottom: 24,
+            marginBottom: 20,
             color: "#000000",
             textAlign: "center",
-            maxWidth: 1000
+            maxWidth: 900
           }}
         >
           Match Your <span style={{ background: "linear-gradient(135deg, #000000 30%, #666666 90%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Potential</span>,<br />
@@ -101,10 +82,10 @@ export default function Hero() {
         {/* Subtitle */}
         <p
           style={{
-            fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
+            fontSize: "clamp(0.95rem, 1.65vw, 1.15rem)",
             color: "#5a5a6b",
-            maxWidth: 680,
-            margin: "0 auto 40px",
+            maxWidth: 640,
+            margin: "0 auto 30px",
             lineHeight: 1.6,
             textAlign: "center"
           }}
@@ -114,16 +95,16 @@ export default function Hero() {
 
         {/* Primary and Secondary CTAs */}
         <div
-          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: 64 }}
+          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 14, marginBottom: 56 }}
         >
           <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
-            <Link to="/signup" className="btn-primary" style={{ fontSize: "1rem", padding: "14px 36px", boxShadow: "0 10px 25px rgba(0,0,0,0.08)" }}>
-              Get Started Free <ArrowRight size={18} />
+            <Link to="/signup" className="btn-primary" style={{ fontSize: "0.95rem", padding: "12px 30px", boxShadow: "0 10px 25px rgba(0,0,0,0.08)" }}>
+              Get Started Free <ArrowRight size={17} />
             </Link>
           </motion.div>
 
           <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
-            <a href="#features" className="btn-secondary" style={{ fontSize: "1rem", padding: "14px 36px" }}>
+            <a href="#features" className="btn-secondary" style={{ fontSize: "0.95rem", padding: "12px 30px" }}>
               How it Works
             </a>
           </motion.div>

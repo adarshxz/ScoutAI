@@ -7,7 +7,6 @@ import HowItWorks from "../components/landing/HowItWorks";
 // Lazy-load below-the-fold sections to reduce initial bundle size
 const Testimonials = lazy(() => import("../components/landing/Testimonials"));
 const Pricing = lazy(() => import("../components/landing/Pricing"));
-const CTA = lazy(() => import("../components/landing/CTA"));
 const Footer = lazy(() => import("../components/landing/Footer"));
 
 export default function Landing() {
@@ -20,7 +19,6 @@ export default function Landing() {
       <Suspense fallback={null}>
         <Testimonials />
         <Pricing />
-        <CTA />
         <Footer />
       </Suspense>
     </main>
