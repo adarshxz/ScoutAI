@@ -97,7 +97,8 @@ async def coach_chat(
                 gemini_history.append({"role": role, "parts": [m.content]})
 
         # Initialize the model with dynamic system instructions
-        model = genai.GenerativeModel('gemini-2.5-flash', system_instruction=system_instruction)
+        model_name = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+        model = genai.GenerativeModel(model_name, system_instruction=system_instruction)
         chat = model.start_chat(history=gemini_history)
         
         response = chat.send_message(req.message)

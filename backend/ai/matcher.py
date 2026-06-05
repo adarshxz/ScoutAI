@@ -10,8 +10,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-# Use Gemini 3.5 Flash for fast analysis
-model = genai.GenerativeModel('gemini-3.5-flash')
+# Use Gemini model for fast analysis
+model_name = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+model = genai.GenerativeModel(model_name)
 
 MATCH_PROMPT = """
 You are a technical hiring manager at a top-tier tech firm.

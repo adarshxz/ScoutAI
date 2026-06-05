@@ -15,7 +15,8 @@ load_dotenv()
 
 # Setup Gemini AI
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-2.0-flash')
+model_name = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
+model = genai.GenerativeModel(model_name)
 
 GITHUB_ANALYSIS_PROMPT = """
 You are a senior technical recruiter and principal engineer. 
