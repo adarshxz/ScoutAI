@@ -899,3 +899,31 @@ select.input-glass option {
   }
 }
 
+/* ============================================
+   RESPONSIVE UTILITY CLASSES
+   ============================================ */
+
+/* Base utilities */
+.hidden { display: none !important; }
+.flex { display: flex !important; }
+.block { display: block !important; }
+.items-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+
+/* On mobile (< 768px): md:* classes are hidden */
+@media (max-width: 767px) {
+  .md\:hidden { display: flex !important; }
+  .md\:block { display: none !important; }
+  .md\:flex { display: none !important; }
+}
+
+/* On desktop (>= 768px): md:* classes activate */
+@media (min-width: 768px) {
+  .md\:hidden { display: none !important; }
+  .md\:block { display: block !important; }
+  .md\:flex { display: flex !important; }
+  /* hidden + md:block = show on desktop */
+  .hidden.md\:block { display: block !important; }
+  /* hidden + md:flex = show as flex on desktop */
+  .hidden.md\:flex { display: flex !important; }
+}

@@ -44,7 +44,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="md:flex hidden">
+        <div style={{ alignItems: "center", gap: 32 }} className="md:flex hidden">
           {navLinks.map((link) => (
             <Link key={link.label} to={link.href} className="nav-link" style={{ fontSize: "0.875rem", color: "#5a5a6b", transition: "color 0.3s" }}
               onMouseEnter={e => e.target.style.color = "#000000"}
@@ -56,7 +56,7 @@ export default function Navbar() {
         </div>
 
         {/* Auth Buttons */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="md:flex hidden">
+        <div style={{ alignItems: "center", gap: 12 }} className="md:flex hidden">
           <Link to="/login" style={{ fontSize: "0.875rem", color: "#5a5a6b", padding: "8px 16px", transition: "color 0.3s" }}
             onMouseEnter={e => e.target.style.color = "#000000"}
             onMouseLeave={e => e.target.style.color = "#5a5a6b"}
@@ -72,7 +72,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden flex"
-          style={{ width: 40, height: 40, flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "none", cursor: "pointer" }}
+          style={{ width: 40, height: 40, flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "none", cursor: "pointer", display: undefined }}
           aria-label="Toggle mobile menu"
         >
           <motion.span animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} style={{ width: 20, height: 2, background: "rgba(0, 0, 0,0.7)", display: "block" }} />
