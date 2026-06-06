@@ -7,7 +7,6 @@ import Landing from "./pages/Landing";
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
-const AuthCallback = lazy(() => import("./pages/AuthCallback"));
 const DashboardLayout = lazy(() => import("./components/dashboard/DashboardLayout"));
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Profile = lazy(() => import("./pages/dashboard/Profile"));
@@ -59,7 +58,6 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/docs" element={<Documentation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/career-tips" element={<CareerTips />} />
