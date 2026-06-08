@@ -48,19 +48,34 @@ async def fetch_github_profile(username: str) -> Dict[str, Any]:
     """
     Fetch public repositories and profile stats for a GitHub user
     """
-    headers = {}
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "ScoutAI-App"
+    }
     token = os.getenv("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = f"token {token}"
     
     # We will use httpx for async HTTP requests
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=30.0) as client:
         # Fetch user general details
         user_url = f"https://api.github.com/users/{username}"
         user_res = await client.get(user_url, headers=headers)
         
-        if user_res.status_code != 200:
+        if user_res.status_code == 404:
             raise ValueError(f"GitHub user not found: {username}")
+        elif user_res.status_code == 403:
+            # Rate limit exceeded
+            remaining = user_res.headers.get("x-ratelimit-remaining", "?")
+            reset_time = user_res.headers.get("x-ratelimit-reset", "?")
+            print(f"GitHub API rate limit hit. Remaining: {remaining}, Reset: {reset_time}")
+            raise RuntimeError(
+                "GitHub API rate limit exceeded. Please try again in a few minutes, "
+                "or add a GITHUB_TOKEN to the backend .env file for higher limits."
+            )
+        elif user_res.status_code != 200:
+            print(f"GitHub API error: {user_res.status_code} - {user_res.text}")
+            raise RuntimeError(f"GitHub API returned status {user_res.status_code}")
             
         user_data = user_res.json()
         
@@ -176,7 +191,11 @@ async def analyze_github_profile(username: str) -> Dict[str, Any]:
     except ValueError as e:
         # GitHub user not found
         print(f"GitHub Analysis Error (User Not Found): {e}")
-        raise ValueError(str(e))
+        raise
+    except RuntimeError as e:
+        # Rate limit or API errors
+        print(f"GitHub Analysis Error (API): {e}")
+        raise
     except Exception as e:
         print(f"GitHub Analysis Error: {e}")
         import traceback

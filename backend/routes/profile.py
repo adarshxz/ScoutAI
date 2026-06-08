@@ -213,6 +213,24 @@ async def analyze_user_github(
 
         return analysis_res
 
+    except ValueError as e:
+        # GitHub user not found
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(e),
+        )
+    except RuntimeError as e:
+        # Rate limit exceeded or GitHub API error
+        error_msg = str(e)
+        if "rate limit" in error_msg.lower():
+            raise HTTPException(
+                status_code=429,
+                detail=error_msg,
+            )
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail=error_msg,
+        )
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
