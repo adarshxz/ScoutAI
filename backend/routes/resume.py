@@ -26,7 +26,7 @@ async def analyze_resume(
     """
     1. Download file from Supabase URL
     2. Parse text based on type
-    3. Analyze with Gemini AI
+    3. Analyze with Groq AI
     4. Store results in Database
     5. Return analysis
     """

@@ -3,15 +3,14 @@ LangGraph-powered matching engine.
 Compares user profile, projects, resume, and GitHub data against a job description.
 """
 import json
-import os
 from typing import Any, TypedDict
 
-import google.generativeai as genai
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
 from langgraph.graph import END, START, StateGraph
 
+from ai.groq_client import generate_text_async
 from ai.json_utils import extract_json
 
 load_dotenv()
@@ -26,21 +25,9 @@ class MatchGraphState(TypedDict, total=False):
     match_result: dict
 
 
-def _model(temperature: float = 0.2):
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    generation_config = genai.types.GenerationConfig(temperature=temperature)
-    return genai.GenerativeModel(
-        os.getenv("GEMINI_MODEL", "gemini-3.5-flash"),
-        generation_config=generation_config,
-    )
-
-
-def _gemini_runnable(temperature: float = 0.2):
+def _groq_runnable(temperature: float = 0.2):
     async def _call(prompt_value) -> str:
-        response = await _model(temperature).generate_content_async(
-            prompt_value.to_string()
-        )
-        return response.text
+        return await generate_text_async(prompt_value.to_string(), temperature=temperature)
 
     return RunnableLambda(_call)
 
@@ -151,7 +138,7 @@ Return this JSON shape:
             ),
         ]
     )
-    chain = prompt | _gemini_runnable()
+    chain = prompt | _groq_runnable()
     response = await chain.ainvoke({"jd_text": state["jd_text"][:10000]})
     return {"jd_analysis": extract_json(_message_text(response))}
 
@@ -200,7 +187,7 @@ Return this JSON shape:
             ),
         ]
     )
-    chain = prompt | _gemini_runnable()
+    chain = prompt | _groq_runnable()
     response = await chain.ainvoke(
         {
             "candidate_context": state["candidate_context"],
@@ -253,7 +240,7 @@ Return this JSON shape:
             ),
         ]
     )
-    chain = prompt | _gemini_runnable(temperature=0.3)
+    chain = prompt | _groq_runnable(temperature=0.3)
     response = await chain.ainvoke(
         {
             "jd_analysis": json.dumps(state["jd_analysis"], ensure_ascii=False),

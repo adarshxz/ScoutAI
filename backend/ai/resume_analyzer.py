@@ -1,18 +1,12 @@
 """
-AI Resume Analysis service using Gemini
+AI Resume Analysis service using Groq
 """
-import os
 import json
-import google.generativeai as genai
 from dotenv import load_dotenv
 
+from ai.groq_client import generate_text
+
 load_dotenv()
-
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
-# Use Gemini model for fast analysis
-model_name = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
-model = genai.GenerativeModel(model_name)
 
 RESUME_ANALYSIS_PROMPT = """
 You are a senior recruiter and ATS expert at a top-tier tech company (like Google, Stripe, or Vercel).
@@ -53,14 +47,12 @@ RESPONSE FORMAT (STRICT JSON ONLY):
 
 async def analyze_resume_with_ai(resume_text: str):
     """
-    Send resume text to Gemini for structured analysis
+    Send resume text to Groq for structured analysis
     """
     try:
         prompt = RESUME_ANALYSIS_PROMPT.format(resume_text=resume_text[:10000]) # Limit text
-        response = model.generate_content(prompt)
-        
-        # Extract JSON from response
-        text_response = response.text
+        text_response = generate_text(prompt)
+
         # Cleanup potential markdown code blocks
         if "```json" in text_response:
             text_response = text_response.split("```json")[1].split("```")[0].strip()
@@ -69,7 +61,7 @@ async def analyze_resume_with_ai(resume_text: str):
             
         return json.loads(text_response)
     except Exception as e:
-        print(f"Gemini Analysis Error: {e}")
+        print(f"Groq Analysis Error: {e}")
         # Return fallback mock data for testing if AI fails
         return {
             "ats_score": 65,

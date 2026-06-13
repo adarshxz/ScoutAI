@@ -1,22 +1,18 @@
 """
 GitHub Intelligence Service
 Fetches and analyzes a candidate's GitHub repositories, calculates an activity score,
-and uses Gemini AI to evaluate their code quality and technical stack.
+and uses Groq AI to evaluate their code quality and technical stack.
 """
 import os
 import asyncio
 import json
 import httpx
-import google.generativeai as genai
 from typing import Dict, Any, List
 from dotenv import load_dotenv
 
-load_dotenv()
+from ai.groq_client import generate_text
 
-# Setup Gemini AI
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model_name = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
-model = genai.GenerativeModel(model_name)
+load_dotenv()
 
 GITHUB_ANALYSIS_PROMPT = """
 You are a senior technical recruiter and principal engineer. 
@@ -146,7 +142,7 @@ async def analyze_github_profile(username: str) -> Dict[str, Any]:
         
         activity_score = round(repo_points + star_points + fork_points, 1)
         
-        # 3. AI Analysis with Gemini (with retry for rate limits)
+        # 3. AI Analysis with Groq (with retry for rate limits)
         prompt = GITHUB_ANALYSIS_PROMPT.format(
             username=username,
             total_repos=total_repos,
@@ -158,8 +154,7 @@ async def analyze_github_profile(username: str) -> Dict[str, Any]:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                response = model.generate_content(prompt)
-                text_response = response.text
+                text_response = generate_text(prompt)
                 
                 # Clean potential markdown JSON fencing
                 if "```json" in text_response:
@@ -169,14 +164,14 @@ async def analyze_github_profile(username: str) -> Dict[str, Any]:
                     
                 ai_insights = json.loads(text_response)
                 break  # Success, exit retry loop
-            except Exception as gemini_err:
-                err_str = str(gemini_err)
+            except Exception as ai_err:
+                err_str = str(ai_err)
                 if "429" in err_str and attempt < max_retries - 1:
                     wait_time = 20 * (attempt + 1)  # 20s, 40s
-                    print(f"Gemini rate limited (attempt {attempt + 1}/{max_retries}). Retrying in {wait_time}s...")
+                    print(f"Groq rate limited (attempt {attempt + 1}/{max_retries}). Retrying in {wait_time}s...")
                     await asyncio.sleep(wait_time)
                 else:
-                    raise gemini_err
+                    raise ai_err
         
         return {
             "github_username": username,

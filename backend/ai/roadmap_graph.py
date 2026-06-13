@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import END, START, StateGraph
 
 from ai.json_utils import extract_json
-from ai.matcher import _format_candidate_context, _gemini_runnable, _message_text
+from ai.matcher import _format_candidate_context, _groq_runnable, _message_text
 
 
 class RoadmapGraphState(TypedDict, total=False):
@@ -58,7 +58,7 @@ Return this JSON shape:
             ),
         ]
     )
-    chain = prompt | _gemini_runnable()
+    chain = prompt | _groq_runnable()
     response = await chain.ainvoke(
         {
             "target_role": state["target_role"],
@@ -112,7 +112,7 @@ Return this JSON shape:
             ),
         ]
     )
-    chain = prompt | _gemini_runnable(temperature=0.3)
+    chain = prompt | _groq_runnable(temperature=0.3)
     response = await chain.ainvoke(
         {
             "target_role": state["target_role"],

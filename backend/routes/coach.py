@@ -26,7 +26,7 @@ async def coach_chat(
 ):
     """
     1. Fetch user data for context
-    2. Build Gemini prompt with history
+    2. Build Groq prompt with history
     3. Return AI response
     """
     try:

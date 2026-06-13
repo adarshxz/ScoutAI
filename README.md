@@ -1,11 +1,11 @@
 # ScoutAI — AI-Powered Career Intelligence & Resume Analysis Platform
 
-ScoutAI is a career analysis and resume optimization platform designed to help students and early-career developers improve their resumes, analyze their GitHub portfolios, and match with their dream roles using Gemini AI.
+ScoutAI is a career analysis and resume optimization platform designed to help students and early-career developers improve their resumes, analyze their GitHub portfolios, and match with their dream roles using Groq AI.
 
 ---
 
 ## 🛠️ Project Structure
-* **`/backend`**: FastAPI application with integrations for Gemini AI, Supabase Auth/Database, and resume parsing.
+* **`/backend`**: FastAPI application with integrations for Groq AI, Supabase Auth/Database, and resume parsing.
 * **`/frontend-vite`**: React + Vite + Tailwind CSS/Vanilla CSS web application for the interactive candidate dashboard.
 
 ---
@@ -53,8 +53,8 @@ Follow these steps to run both the backend and frontend services locally.
      ```
    * Open `.env` and fill in the required values:
      * `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`: Your Supabase database credentials.
-     * `GEMINI_API_KEY`: Your Gemini API key (generate one for free on [Google AI Studio](https://aistudio.google.com/)).
-     * `GEMINI_MODEL`: (Optional) Defaults to `gemini-3.5-flash` for fastest performance.
+     * `GROQ_API_KEY`: Your Groq API key from the Groq console.
+     * `GROQ_MODEL`: (Optional) Defaults to `llama-3.3-70b-versatile`.
 
 5. Start the backend development server:
    ```bash
@@ -95,5 +95,5 @@ Follow these steps to run both the backend and frontend services locally.
 ## 🔑 Key Features
 * **AI Resume Parser & ATS Grader**: Evaluates resumes, gives ATS readability scores, and rewrites bullet points.
 * **GitHub Portfolio Intelligence**: Analyzes tech stacks, calculates repository-based activity metrics, and identifies candidate strengths.
-* **AI Career Coach**: Interactive chat interface powered by Gemini to provide personalized career progression advice.
+* **AI Career Coach**: Interactive chat interface powered by Groq to provide personalized career progression advice.
 * **Job Matching Engine**: Cross-references a candidate's profile/skills with job descriptions to compute detailed fit alignment.

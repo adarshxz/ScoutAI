@@ -1,14 +1,13 @@
 """
 LangChain-powered career coach.
 """
-import os
 from typing import Iterable
 
-import google.generativeai as genai
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda
 
+from ai.groq_client import generate_text_async
 
 COACH_SYSTEM_PROMPT = """
 You are "ScoutAI", a world-class AI Career Coach specialized in helping students and early-career developers land top-tier internships.
@@ -32,14 +31,8 @@ CANDIDATE DATA:
 """
 
 
-def _model():
-    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    return genai.GenerativeModel(os.getenv("GEMINI_MODEL", "gemini-3.5-flash"))
-
-
-async def _call_gemini(prompt_value) -> str:
-    response = await _model().generate_content_async(prompt_value.to_string())
-    return response.text
+async def _call_groq(prompt_value) -> str:
+    return await generate_text_async(prompt_value.to_string())
 
 
 def _to_langchain_history(history: Iterable) -> list:
@@ -75,7 +68,7 @@ async def generate_coach_response(
             ("human", "{message}"),
         ]
     )
-    chain = prompt | RunnableLambda(_call_gemini)
+    chain = prompt | RunnableLambda(_call_groq)
 
     return await chain.ainvoke(
         {

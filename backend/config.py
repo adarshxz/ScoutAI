@@ -19,8 +19,9 @@ class Settings(BaseSettings):
     SUPABASE_SERVICE_KEY: str = ""
     SUPABASE_JWT_SECRET: str = ""
 
-    # Gemini AI
-    GEMINI_API_KEY: str = ""
+    # Groq AI
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "llama-3.3-70b-versatile"
 
     # GitHub
     GITHUB_TOKEN: str = ""

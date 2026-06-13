@@ -153,7 +153,7 @@ async def analyze_user_github(
 ):
     """
     1. Fetch developer profile and repos from GitHub API
-    2. Run Gemini AI analyzer to evaluate code and level
+    2. Run Groq AI analyzer to evaluate code and level
     3. Save the results in `github_analysis` table
     4. Auto-update the profile's github_url and append parsed languages as skills
     5. Track in History and return analysis
@@ -169,7 +169,7 @@ async def analyze_user_github(
                 detail="GitHub username cannot be empty"
             )
 
-        # 1 & 2. Run GitHub analyzer (fetches from API & analyzes with Gemini)
+        # 1 & 2. Run GitHub analyzer (fetches from API & analyzes with Groq)
         analysis_res = await analyze_github_profile(username)
 
         # 3. Store in Supabase `github_analysis` table
